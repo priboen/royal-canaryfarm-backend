@@ -17,7 +17,6 @@ class AuthenticationController extends Controller
         $request->validated();
 
         $userData = [
-            'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
@@ -27,6 +26,7 @@ class AuthenticationController extends Controller
         $token = $user->createToken('royalcanary')->plainTextToken;
 
         return response()->json([
+            'message' => 'User registered successfully',
             'user' => $user,
             'token' => $token,
         ], 200);
@@ -48,6 +48,7 @@ class AuthenticationController extends Controller
         $token = $user->createToken('royalcanary')->plainTextToken;
 
         return response()->json([
+            'message' => 'Login successful',
             'user' => $user,
             'token' => $token,
         ], 200);
