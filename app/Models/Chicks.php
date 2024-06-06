@@ -13,10 +13,11 @@ class Chicks extends Model
         'photo',
         'date_of_birth',
         'gender',
-        'canary_type'];
+        'canary_type'
+    ];
 
-    public function parent()
+    public function relation()
     {
-        return $this->belongsTo(BirdParent::class, 'parent_id', 'id');
+        return $this->hasMany(ParentChild::class, 'relations_id', 'id');
     }
 }

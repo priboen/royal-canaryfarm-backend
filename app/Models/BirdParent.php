@@ -21,8 +21,9 @@ class BirdParent extends Model
     {
         return $this->belongsTo(Breeder::class, 'breeder_id', 'id');
     }
-    public function breeds()
+
+    public function status()
     {
-        return $this->hasMany(Chicks::class, 'chicks_id', 'id');
+        return $this->hasOne(Status::class, 'parent_id', 'id');
     }
 }
