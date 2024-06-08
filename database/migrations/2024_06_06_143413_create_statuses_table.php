@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('parent_id');
             $table->string('parent_status');
             $table->timestamps();
-            
-            $table->foreign('parent_id')->references('id')->on('bird_parents')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -26,9 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('statuses', function (Blueprint $table) {
-            $table->dropForeign(['parent_id']);
-        });
         Schema::dropIfExists('statuses');
     }
 };

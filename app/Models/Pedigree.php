@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ParentChild extends Model
+class Pedigree extends Model
 {
     use HasFactory;
     protected $fillable = ['parent_id', 'child_id', 'relations_id'];
@@ -24,4 +24,9 @@ class ParentChild extends Model
     {
         return $this->belongsToMany(Status::class, 'relations_id', 'id');
     }
+
+    protected $table = 'pedigrees';
+    protected $hidden = [
+        'chicks_id',
+    ];
 }

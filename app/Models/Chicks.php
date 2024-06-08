@@ -16,8 +16,8 @@ class Chicks extends Model
         'canary_type'
     ];
 
-    public function relation()
+    public function pedigree()
     {
-        return $this->hasMany(ParentChild::class, 'relations_id', 'id');
+        return $this->hasMany(Pedigree::class, 'ped_id', 'id');
     }
 }

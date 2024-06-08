@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Feed\FeedController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +20,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/test', function () {
-    return response()->json([
-        'message' => 'Hello World!',
-    ], 200);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/chicks', [FeedController::class, 'addChickFeed']);
+    Route::get('/chicks', [FeedController::class, 'getChickFeed']);
+    Route::get('/chicks/{id}', [FeedController::class, 'getChickFeedById']);
 });
+
 Route::post('/register', [AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::get('/status', [StatusController::class, 'getStatus']);
+Route::get('/status/{id}', [StatusController::class, 'getStatusById']);
+Route::post('/addStatus', [StatusController::class, 'createStatus']);
+
+

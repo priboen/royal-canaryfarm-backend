@@ -8,16 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
-    protected $fillable = ['parent_id', 'parent_status'];
-
-    public function parent()
+    protected $fillable = ['parent_status'];
+    public function pedigree()
     {
-        return $this->belongsTo(BirdParent::class, 'parent_id', 'id');
+        return $this->belongsTo(Pedigree::class, 'ped_id', 'id');
     }
-
-    public function relation()
-    {
-        return $this->belongsTo(ParentChild::class, 'relations_id', 'id');
-    }
-
 }
