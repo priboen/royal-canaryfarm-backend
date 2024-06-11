@@ -22,8 +22,11 @@ class BreederRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            
+            'user_id|exists:users,id',
+            'name',
+            'address',
+            'photo',
+            'phone'
         ];
     }
 }
