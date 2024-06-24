@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('breeder_id');
             $table->string('ring_number', 255)->nullable();
             $table->string('photo', 255);
+            $table->decimal('price', 8, 2)->default(0.00);
             $table->date('date_of_birth');
             $table->string('gender', 255)->nullable();
             $table->string('canary_type', 255)->nullable();
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('breeder_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 

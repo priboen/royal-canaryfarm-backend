@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pedigree extends Model
 {
     use HasFactory;
-    protected $fillable = ['parent_id', 'child_id', 'relations_id'];
+    protected $fillable = ['parent_id', 'chicks_id', 'relations_id'];
 
     public function parent()
     {
@@ -25,7 +25,7 @@ class Pedigree extends Model
         return $this->belongsToMany(Status::class, 'relations_id', 'id');
     }
 
-    protected $table = 'pedigrees';
+    protected $table = 'pedigree';
     protected $hidden = [
         'chicks_id',
     ];

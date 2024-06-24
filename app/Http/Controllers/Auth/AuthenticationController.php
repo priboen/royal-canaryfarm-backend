@@ -39,7 +39,7 @@ class AuthenticationController extends Controller
     {
         $request->validated();
 
-        $user = User::where('username', $request->username)->first();
+        $user = User::where('username', $request->username)->with(['breeder'])->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -51,7 +51,7 @@ class AuthenticationController extends Controller
 
         return response()->json([
             'message' => 'Login successful',
-            'user' => $user,
+            'nama_breeder' => $user->breeder->name,
             'token' => $token,
         ], 200);
     }
@@ -80,7 +80,7 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $photoPath = $request->file('photo')->store('photo', 'public');
+        $photoPath = $request->file('photo')->store('public/photos');
         $photoUrl = url('storage/' . substr($photoPath, 7));
 
         $breeder = Breeder::create([

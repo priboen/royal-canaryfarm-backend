@@ -24,6 +24,7 @@ class BirdParentsRequest extends FormRequest
         return [
             'breeder_id' => 'required|exists:users,id',
             'ring_number' => 'required',
+            'price' => 'required',
             'photo' => 'required',
             'date_of_birth' => 'required|date',
             'gender' => 'required',

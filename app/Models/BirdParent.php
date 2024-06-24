@@ -12,10 +12,12 @@ class BirdParent extends Model
         'breeder_id',
         'ring_number',
         'photo',
+        'price',
         'date_of_birth',
         'gender',
         'canary_type',
-        'type_description'];
+        'type_description'
+    ];
 
     public function breeder()
     {
